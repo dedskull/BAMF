@@ -1,4 +1,8 @@
-# -*- coding: utf-8 *-*
+# Exploit Title: Bitbot C2 Panel gate2.php SQLi + XSS
+# Date: 08/19/2013
+# Exploit Author: Brian Wallace (bwall aka @botnet_hunter)
+# Software Link: https://sourceforge.net/p/flippingbitbot/wiki/Home/ (Vulnerable Virtual Machine including Bitbot)
+# Tested on: Debian/Ubuntu
 from StringIO import StringIO
 import datetime
 import urllib
@@ -11,7 +15,8 @@ By: Brian Wallace (bwall) @botnet_hunter
 
 You can test these against the Vulnerable Virtual Machine challenge featuring
 Bitbot at https://sourceforge.net/p/flippingbitbot/wiki/Home/ and
-read details about more elaborate attacks against Bitbot at {cylance blog post}
+read details about more elaborate attacks against Bitbot at 
+http://cylance.com/techblog/A-Study-in-Bots-Bitbot.shtml
 
 "drop" - Sets the command on all the bots to uninstall themselves, a modified
 version could be used to get the bots to download and execute a file.
@@ -29,7 +34,7 @@ bots.  This one could be used to potentially dump the database, write a web
 shell and read files from the host.  I'll leave that to your imagination.  The
 implemented attack will DoS the MySQL server, and if repeated, eventually it
 can DoS the Apache server if a max instance count is set (default configuration
-will take only 150 to lock users out of Apache).  The current version is a
+will take only 150 to lock bots/botters out of Apache).  The current version is a
 blocking call.
 '''
 
