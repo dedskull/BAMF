@@ -15,7 +15,8 @@ By: Brian Wallace (bwall) @botnet_hunter
 
 You can test these against the Vulnerable Virtual Machine challenge featuring
 Bitbot at https://sourceforge.net/p/flippingbitbot/wiki/Home/ and
-read details about more elaborate attacks against Bitbot at {cylance blog post}
+read details about more elaborate attacks against Bitbot at 
+http://cylance.com/techblog/A-Study-in-Bots-Bitbot.shtml
 
 "drop" - Sets the command on all the bots to uninstall themselves, a modified
 version could be used to get the bots to download and execute a file.
