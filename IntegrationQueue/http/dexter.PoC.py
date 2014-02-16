@@ -22,7 +22,7 @@ def PrintHelp():
     print "arguments:"
     print "  action        Actions to be taken against the botnet (default: dump)"
     print "                dump - Print configuration information obtained from source file"
-    print "                drop - Execute a command to make the bot scripts exit"
+    print "                graph - Graph all the bots in the command and control to Gexf file"
     print "  source        Path to non-obfuscated source code for the target bot (default: stdin)"
     print ""
     print("GPS:")
