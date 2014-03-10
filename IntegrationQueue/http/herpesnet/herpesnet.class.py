@@ -16,7 +16,6 @@ class HerpesNetPanel:
     def __init__(self, gateway_url):
         self.gateway_url = gateway_url
 
-
     @staticmethod
     def _get_field(gateway, table, column, row):
         prefix = ""
