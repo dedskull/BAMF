@@ -1,20 +1,17 @@
-import bin_parse_module
-import yara
-import common
-import base64
+from bin_parse_module import PEParseModule
+from common import Modules, data_strings, load_yara_rules
+from base64 import b64decode
 
 
-class madness_pro(bin_parse_module.PEParseModule):
+class madness_pro(PEParseModule):
     def __init__(self):
-        bin_parse_module.PEParseModule.__init__(self, "Madness Pro")
+        PEParseModule.__init__(self, "Madness Pro")
         self.yara_rules = None
         pass
 
     def _generate_yara_rules(self):
         if self.yara_rules is None:
-            self.yara_rules = yara.compile(
-                source='rule config { strings: $c = "YXBvS0FMaXBsaXM9" $str5 = "d3Rm" fullword '
-                       '$str6 = "ZXhl" fullword condition: all of them }')
+            self.yara_rules = load_yara_rules("madnesspro.yara")
         return self.yara_rules
 
     @staticmethod
@@ -22,7 +19,7 @@ class madness_pro(bin_parse_module.PEParseModule):
         key = key.replace("^", "j")
         key = key.replace("@", "H")
         key = key.replace("*", "d")
-        key = base64.b64decode(key)
+        key = b64decode(key)
         return key
 
     @staticmethod
@@ -39,7 +36,7 @@ class madness_pro(bin_parse_module.PEParseModule):
 
     def get_bot_information(self, file_data):
         results = {}
-        for s in common.data_strings(file_data):
+        for s in data_strings(file_data):
             if s[:len("YXBvS0")] == "YXBvS0":
                 results["c2_uri"] = madness_pro.parse_madness_pro_config(s)
             else:
@@ -51,4 +48,4 @@ class madness_pro(bin_parse_module.PEParseModule):
                     pass
         return results
 
-common.Modules.list.append(madness_pro())
+Modules.list.append(madness_pro())

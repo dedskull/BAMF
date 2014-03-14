@@ -1,4 +1,6 @@
 from string import printable
+from yara import compile
+from os.path import dirname, join, abspath
 
 
 class Modules:
@@ -14,3 +16,7 @@ def data_strings(data, min=4):
         if len(result) >= min:
             yield result
         result = ""
+
+
+def load_yara_rules(name):
+    return compile(join(dirname(abspath(__file__)), "..", "yara", name))

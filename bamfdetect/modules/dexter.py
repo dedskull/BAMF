@@ -1,20 +1,17 @@
-import bin_parse_module
-import yara
-import common
-import re
+from bin_parse_module import PEParseModule
+from common import Modules, data_strings, load_yara_rules
+from re import compile as recompile
 
 
-class dexter(bin_parse_module.PEParseModule):
+class dexter(PEParseModule):
     def __init__(self):
-        bin_parse_module.PEParseModule.__init__(self, "Dexter")
+        PEParseModule.__init__(self, "Dexter")
         self.yara_rules = None
         pass
 
     def _generate_yara_rules(self):
         if self.yara_rules is None:
-            self.yara_rules = yara.compile(
-                source='rule config { strings: $c = "UpdateMutex:" $str5 = "response=" '
-                       '$str6 = "&view=" condition: all of them }')
+            self.yara_rules = load_yara_rules("dexter.yara")
         return self.yara_rules
 
     @staticmethod
@@ -23,7 +20,7 @@ class dexter(bin_parse_module.PEParseModule):
             s = s[:-1]
         if s[:7] == "http://":
             s = s[7:]
-        p = re.compile("^[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]$")
+        p = recompile("^[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]$")
         if p.match(s) is not None:
             return True
         # todo IPv6 check
@@ -76,7 +73,7 @@ class dexter(bin_parse_module.PEParseModule):
         results = {}
         gate = None
         server = None
-        for s in common.data_strings(file_data):
+        for s in data_strings(file_data):
             if s.find(".php") != -1:
                 if s[0] != "/":
                     s = "/" + s
@@ -87,4 +84,4 @@ class dexter(bin_parse_module.PEParseModule):
             results["c2-uri"] = "%s%s" %(server, gate)
         return results
 
-common.Modules.list.append(dexter())
+Modules.list.append(dexter())
