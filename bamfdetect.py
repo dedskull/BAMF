@@ -1,9 +1,6 @@
 #!/usr/bin/env python
-import bamfdetect.modules
-import bamfdetect.modules.common
+import bamfdetect
 import json
-from os import listdir
-from os.path import isfile, isdir, join, abspath
 
 
 def print_help():
@@ -35,25 +32,6 @@ if __name__ == "__main__":
         print_help()
         exit()
 
-    results = {}
-    paths = args.file
-
-    while len(paths) != 0:
-        path = abspath(paths[0])
-        del paths[0]
-        if isfile(path):
-            with open(path, mode='rb') as file_handle:
-                file_content = file_handle.read()
-                for m in bamfdetect.modules.common.Modules.list:
-                    if m.is_bot(file_content):
-                        results[path] = {}
-                        if not args.detect:
-                            results[path]["information"] = m.get_bot_information(file_content)
-                        results[path]["type"] = m.get_name()
-        elif isdir(path):
-            for p in listdir(path):
-                p = join(path, p)
-                if isfile(p) or (isdir(p) and args.recursive):
-                    paths.append(p)
+    results = bamfdetect.scan_paths(args.file, args.detect, args.recursive)
 
     print json.dumps(results, sort_keys=True, indent=4, separators=(',', ': '))
