@@ -1,5 +1,4 @@
-from bin_parse_module import PHPParseModule
-from common import Modules, load_yara_rules
+from common import Modules, load_yara_rules, PHPParseModule
 from re import compile as recompile, MULTILINE
 
 

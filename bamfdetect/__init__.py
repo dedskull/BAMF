@@ -7,6 +7,10 @@ from os.path import isfile, isdir, join, abspath, dirname
 path.append(dirname(abspath(__file__)))
 
 
+def get_version():
+    return "0.1"
+
+
 def scan_paths(paths, only_detect, recursive):
     results = {}
     while len(paths) != 0:

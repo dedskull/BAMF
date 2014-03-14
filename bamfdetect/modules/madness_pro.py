@@ -1,5 +1,4 @@
-from bin_parse_module import PEParseModule
-from common import Modules, data_strings, load_yara_rules
+from common import Modules, data_strings, load_yara_rules, PEParseModule
 from base64 import b64decode
 
 

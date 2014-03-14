@@ -1,9 +1,9 @@
-import os
-import glob
-import importlib
+from os.path import basename, dirname, abspath
+from glob import glob
+from importlib import import_module
 
-__all__ = [ os.path.basename(f)[:-3] for f in glob.glob(os.path.dirname(os.path.abspath(__file__))+"/*.py")]
-__all__ = [ v for v in __all__ if not v == "__init__" and not v == "bin_parse_module" ]
+__all__ = [basename(f)[:-3] for f in glob(dirname(abspath(__file__))+"/*.py")]
+__all__ = [v for v in __all__ if not v == "__init__"]
 
 for mod in __all__:
-    importlib.import_module("bamfdetect.modules." +  mod)
+    import_module("bamfdetect.modules." +  mod)
