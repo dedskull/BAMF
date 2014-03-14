@@ -4,7 +4,7 @@ import json
 
 
 if __name__ == "__main__":
-    from argparse import ArgumentParser, RawDescriptionHelpFormatter
+    from argparse import ArgumentParser
     parser = ArgumentParser(
         prog=__file__,
         description="Identifies and extracts information from bots",
@@ -18,8 +18,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.help or args.path is None:
-        print_help()
+    if args.path is None:
+        parser.print_help()
         exit()
 
     results = bamfdetect.scan_paths(args.path, args.detect, args.recursive)
