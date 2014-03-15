@@ -1,10 +1,19 @@
-from common import Modules, data_strings, load_yara_rules, PEParseModule
+from common import Modules, data_strings, load_yara_rules, PEParseModule, ModuleMetadata
 from re import compile as recompile
 
 
 class dexter(PEParseModule):
     def __init__(self):
-        PEParseModule.__init__(self, "Dexter")
+        md = ModuleMetadata(
+            module_name="dexter",
+            bot_name="Dexter",
+            description="Point of sale malware designed to extract credit card information from RAM",
+            authors=["Brian Wallace (@botnet_hunter)"],
+            version="1.0.0",
+            date="March 14, 2014",
+            references=[]
+        )
+        PEParseModule.__init__(self, md)
         self.yara_rules = None
         pass
 

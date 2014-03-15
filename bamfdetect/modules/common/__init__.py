@@ -3,13 +3,33 @@ from yara import compile
 from os.path import dirname, join, abspath
 
 
-class BinParseModule(object):
-    def __init__(self, name, data_type):
-        self.data_type = data_type
-        self.name = name
+class ModuleMetadata(object):
+    def __init__(self, module_name, bot_name, description, authors, date, version, references):
+        self.module_name = module_name
+        self.bot_name = bot_name
+        self.description = description
+        self.authors = authors
+        self.date = date
+        self.version = version
+        self.references = references
 
-    def get_name(self):
-        return self.name
+    def __str__(self):
+        return "%s (%s %s) - %s" % (self.bot_name, self.module_name, self.version, self.description)
+
+
+class BinParseModule(object):
+    def __init__(self, metadata, data_type):
+        self.data_type = data_type
+        self.metadata = metadata
+
+    def get_metadata(self):
+        return self.metadata
+
+    def get_module_name(self):
+        return self.metadata.module_name
+
+    def get_bot_name(self):
+        return self.metadata.bot_name
 
     def _generate_yara_rules(self):
         return None
@@ -25,13 +45,13 @@ class BinParseModule(object):
 
 
 class PEParseModule(BinParseModule):
-    def __init__(self, name):
-        BinParseModule.__init__(self, name, "PE")
+    def __init__(self, metadata):
+        BinParseModule.__init__(self, metadata, "PE")
 
 
 class PHPParseModule(BinParseModule):
-    def __init__(self, name):
-        BinParseModule.__init__(self, name, "PHP")
+    def __init__(self, metadata):
+        BinParseModule.__init__(self, metadata, "PHP")
 
 
 class Modules:

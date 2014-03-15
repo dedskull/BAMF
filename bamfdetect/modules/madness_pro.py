@@ -1,10 +1,19 @@
-from common import Modules, data_strings, load_yara_rules, PEParseModule
+from common import Modules, data_strings, load_yara_rules, PEParseModule, ModuleMetadata
 from base64 import b64decode
 
 
 class madness_pro(PEParseModule):
     def __init__(self):
-        PEParseModule.__init__(self, "Madness Pro")
+        md = ModuleMetadata(
+            module_name="madnesspro",
+            bot_name="Madness Pro",
+            description="Distributed Denial of Service botnet capable of various attacks",
+            authors=["Brian Wallace (@botnet_hunter)"],
+            version="1.0.0",
+            date="March 14, 2014",
+            references=[]
+        )
+        PEParseModule.__init__(self, md)
         self.yara_rules = None
         pass
 
@@ -31,13 +40,15 @@ class madness_pro(PEParseModule):
                 if x % 3 == 0:
                     tkey += key[x]
             key = tkey
-        return key[:-len("0fe9bdh")]
+        return {"c2_uri": key[:-len("0fe9bdh")], "mk": key[-len("0fe9bdh"):][:-1]}
 
     def get_bot_information(self, file_data):
         results = {}
         for s in data_strings(file_data):
             if s[:len("YXBvS0")] == "YXBvS0":
-                results["c2_uri"] = madness_pro.parse_madness_pro_config(s)
+                c = madness_pro.parse_madness_pro_config(s)
+                for key in c:
+                    results[key] = c[key]
             else:
                 try:
                     ret = madness_pro.bdecode(s)

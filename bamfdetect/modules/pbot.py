@@ -1,10 +1,20 @@
-from common import Modules, load_yara_rules, PHPParseModule
+from common import Modules, load_yara_rules, PHPParseModule, ModuleMetadata
 from re import compile as recompile, MULTILINE
 
 
 class pbot(PHPParseModule):
     def __init__(self):
-        PHPParseModule.__init__(self, "pBot")
+        md = ModuleMetadata(
+            module_name="pbot",
+            bot_name="pBot",
+            description="PHP IRC bot which can be used to drop other malware, spread and launch denial of service "
+                        "attacks",
+            authors=["Brian Wallace (@botnet_hunter)"],
+            version="1.0.0",
+            date="March 14, 2014",
+            references=[]
+        )
+        PHPParseModule.__init__(self, md)
         self.yara_rules = None
         pass
 
