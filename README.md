@@ -27,21 +27,22 @@ bamfdetect is the first to be implemented.  The following are supported modules:
 * pBot
 
 
-    cloud@strife:~/git/BAMF$ ./bamfdetect.py -h
-    usage: ./bamfdetect.py [-h] [-v] [-d] [-r] [-l] [-m MODULE] [path [path ...]]
+<pre>cloud@strife:~/git/BAMF$ ./bamfdetect.py -h
+usage: ./bamfdetect.py [-h] [-v] [-d] [-r] [-l] [-m MODULE] [path [path ...]]
 
-    Identifies and extracts information from bots
+Identifies and extracts information from bots
 
-    positional arguments:
-      path                  Paths to files or directories to scan
+positional arguments:
+  path                  Paths to files or directories to scan
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -v, --version         show program's version number and exit
-      -d, --detect          Only detect files
-      -r, --recursive       Scan paths recursively
-      -l, --list            List available modules
-      -m MODULE, --module MODULE
-                            Modules to use, if not definedall modules are used
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -d, --detect          Only detect files
+  -r, --recursive       Scan paths recursively
+  -l, --list            List available modules
+  -m MODULE, --module MODULE
+                        Modules to use, if not definedall modules are used
 
-    ./bamfdetect.py v1.1.0 by Brian Wallace (@botnet_hunter)
+./bamfdetect.py v1.1.0 by Brian Wallace (@botnet_hunter)
+</pre>
