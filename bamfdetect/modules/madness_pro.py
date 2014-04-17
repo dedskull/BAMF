@@ -1,5 +1,7 @@
 from common import Modules, data_strings, load_yara_rules, PEParseModule, ModuleMetadata
 from base64 import b64decode
+from re import match
+from string import ascii_lowercase, ascii_uppercase, digits
 
 
 class madness_pro(PEParseModule):
@@ -44,15 +46,15 @@ class madness_pro(PEParseModule):
 
     def get_bot_information(self, file_data):
         results = {}
-        for s in data_strings(file_data):
+        for s in data_strings(file_data, charset=ascii_lowercase + ascii_uppercase + digits + "=+/^@*"):
             if s[:len("YXBvS0")] == "YXBvS0":
                 c = madness_pro.parse_madness_pro_config(s)
                 for key in c:
-                    results[key] = c[key]
+                    results[key] = unicode(c[key], errors='ignore')
             else:
                 try:
                     ret = madness_pro.bdecode(s)
-                    if ret[:2][1:] == ".":
+                    if match(r'^\d\.\d\d$', ret) is not None:
                         results["version"] = ret
                 except:
                     pass
