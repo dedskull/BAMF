@@ -11,7 +11,13 @@ Parts
 =====
 At this point in time, I have decided to break BAMF up into multiple interfacing scripts serving different purposes.  This makes designing quite a bit easier and decreases the requirements for a module.  The proposed parts are as follows (although more tools may be added in the future):
 
+In Progress:
+
 * bamfdetect - Parse binary files and scripts detecting known bots.  Also capable of extracting configuration information from the bot.
+
+Concept Only:
+
+* bamfident - Identify botnet panel from URI
 * bamfwatch - Parsing pcap or live traffic, identifying known botnet traffic and logging it
 * bamfstalk - Monitor the external command structure for a botnet, essentially pretending to be a bot
 * bamfbrute - Brute force login credentials to the botnet command and control

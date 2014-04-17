@@ -58,15 +58,17 @@ class Modules:
     list = []
 
 
-def data_strings(data, min=4):
+def data_strings(data, min=4, charset=printable):
     result = ""
     for c in data:
-        if c in printable:
+        if c in charset:
             result += c
             continue
         if len(result) >= min:
             yield result
         result = ""
+    if len(result) >= min:
+        yield result
 
 
 def load_yara_rules(name):
