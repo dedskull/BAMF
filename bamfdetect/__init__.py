@@ -8,7 +8,7 @@ path.append(dirname(abspath(__file__)))
 
 
 def get_version():
-    return "1.1.0"
+    return "1.1.1"
 
 
 def get_loaded_modules():
