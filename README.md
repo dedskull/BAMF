@@ -7,13 +7,16 @@ BAMF is a modular framework designed to be a platform to perform various forms o
 
 Note: Until I have more time to actually design a v1, I will mostly be uploading different PoCs to this repository into the IntegrationQueue folder.  The purpose of the IntegrationQueue is ideas to incorporate into the design and to store proof of concepts.
 
+bamfdetect has moved to https://github.com/bwall/bamfdetect
+
+
 Parts
 =====
 At this point in time, I have decided to break BAMF up into multiple interfacing scripts serving different purposes.  This makes designing quite a bit easier and decreases the requirements for a module.  The proposed parts are as follows (although more tools may be added in the future):
 
 In Progress:
 
-* bamfdetect - Parse binary files and scripts detecting known bots.  Also capable of extracting configuration information from the bot.
+* bamfdetect - Parse binary files and scripts detecting known bots.  Also capable of extracting configuration information from the bot.  This project has moved to https://github.com/bwall/bamfdetect
 
 Concept Only:
 
