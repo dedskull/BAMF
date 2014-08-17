@@ -33,32 +33,3 @@ Since this framework is still forming, and development is primarily done in limi
 * Stub - This means functionality is yet to exist, and any results returned may be purely for testing purposes.  The stub's interface may change.
 * Experimental - This means functionality/design/execution are still being experimented with.  This means the interface may change, and may not be good to base other tools around.
 * RC - Release candidates are closer to stable.  There are less chances of changes to the interface.  Changes are likely to be limited to additions.
-
-bamfdetect
-----------
-bamfdetect is the first to be implemented.  The following are supported modules:
-
-* Dexter
-* Madness Pro
-* pBot
-
-
-<pre>cloud@strife:~/git/BAMF$ ./bamfdetect.py -h
-usage: ./bamfdetect.py [-h] [-v] [-d] [-r] [-l] [-m MODULE] [path [path ...]]
-
-Identifies and extracts information from bots
-
-positional arguments:
-  path                  Paths to files or directories to scan
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
-  -d, --detect          Only detect files
-  -r, --recursive       Scan paths recursively
-  -l, --list            List available modules
-  -m MODULE, --module MODULE
-                        Modules to use, if not definedall modules are used
-
-./bamfdetect.py v1.1.0 by Brian Wallace (@botnet_hunter)
-</pre>
