@@ -1,7 +1,7 @@
 BAMF
-====
+========
 
-Botnet Analysis Modular Framework
+Botnet Analysis Modular Framework :
 
 BAMF is a modular framework designed to be a platform to perform various forms of analysis against botnets.  Since botnets are an expansive and evolving form of malware, this framework is also expansive and evolving.  From gathering information from samples statically, to exploiting the command and control panels, this framework hopes to cover the whole process.
 
@@ -11,7 +11,7 @@ bamfdetect has moved to https://github.com/bwall/bamfdetect
 
 
 Parts
-=====
+========
 At this point in time, I have decided to break BAMF up into multiple interfacing scripts serving different purposes.  This makes designing quite a bit easier and decreases the requirements for a module.  The proposed parts are as follows (although more tools may be added in the future):
 
 In Progress:
@@ -27,7 +27,7 @@ Concept Only:
 * bamfdump - Dump information from the command and control panel (database, credentials, logs, etc)
 
 Versions
---------
+-----------
 Since this framework is still forming, and development is primarily done in limited free time, different parts of this project may be at varying states of stability.
 
 * Stub - This means functionality is yet to exist, and any results returned may be purely for testing purposes.  The stub's interface may change.
